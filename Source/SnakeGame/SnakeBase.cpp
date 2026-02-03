@@ -21,7 +21,7 @@ void ASnakeBase::BeginPlay()
 {
 	Super::BeginPlay();
 	SetActorTickInterval(TickSpeed);
-	AddSnakeElement(5);
+	AddSnakeElement(4);
 }
 
 // Called every frame
@@ -65,7 +65,7 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 
 void ASnakeBase::Move()
 {
-	FVector MovementVector;
+	FVector MovementVector(FVector::ZeroVector);
 	switch (LastMoveDirection)
 	{
 	case EMovementDirection::UP:
