@@ -45,6 +45,7 @@ void ASnakeElementBase::HandleBeginOverlap(UPrimitiveComponent* OverlapedCompone
 {
 	if (IsValid(SnakeOwner)) {
 		SnakeOwner->SnakeElementOverlap(this, OtherActor);
+		UE_LOG(LogTemp, Display, TEXT("Overlap"));
 	}
 }
 

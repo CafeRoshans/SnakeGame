@@ -21,7 +21,7 @@ void ASnakeBase::BeginPlay()
 {
 	Super::BeginPlay();
 	SetActorTickInterval(TickSpeed);
-	AddSnakeElement(4);
+	AddSnakeElement(6);
 }
 
 // Called every frame
@@ -50,6 +50,8 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 		MakeVectorY = 1;
 		break;
 	}
+
+	UE_LOG(LogTemp, Display, TEXT("Start"));
 
 	for (int i = 0; i < ElementsNum; ++i) {
 		FVector NewLocation((MakeVectorX * SnakeElements.Num() * ElementSize), (MakeVectorY * SnakeElements.Num() * ElementSize), 0);
@@ -97,8 +99,10 @@ void ASnakeBase::Move()
 
 void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other)
 {
+	UE_LOG(LogTemp, Display, TEXT("Base"));
 	if (IsValid(OverlappedElement))
 	{
+		UE_LOG(LogTemp, Display, TEXT("Pro"));
 		int32 ElemIndex;
 		SnakeElements.Find(OverlappedElement, ElemIndex);
 		bool bIsFirst = ElemIndex == 0;
