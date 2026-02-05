@@ -53,8 +53,16 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 
 	UE_LOG(LogTemp, Display, TEXT("Start"));
 
+	bool flag = SnakeElements.Num() > 0;
+
 	for (int i = 0; i < ElementsNum; ++i) {
 		FVector NewLocation((MakeVectorX * SnakeElements.Num() * ElementSize), (MakeVectorY * SnakeElements.Num() * ElementSize), 0);
+
+		if (flag)
+		{
+			NewLocation = SnakeElements[SnakeElements.Num() - 1]->GetActorLocation();
+		}
+
 		FTransform NewTransform(NewLocation);
 		ASnakeElementBase* NewSnakeElement = GetWorld()->SpawnActor<ASnakeElementBase>(SnakeElementClass, NewTransform);
 		NewSnakeElement->SnakeOwner = this;
@@ -95,6 +103,8 @@ void ASnakeBase::Move()
 
 	SnakeElements[0]->AddActorWorldOffset(MovementVector);
 	SnakeElements[0]->ToggleCollision();
+
+	Moving = false;
 }
 
 void ASnakeBase::SnakeElementOverlap(ASnakeElementBase* OverlappedElement, AActor* Other)

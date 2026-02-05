@@ -25,6 +25,8 @@ public:
 	// Sets default values for this actor's properties
 	ASnakeBase();
 
+	bool Moving = false;
+
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<ASnakeElementBase> SnakeElementClass;
 
